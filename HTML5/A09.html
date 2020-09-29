@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A09.html</title>
+</head>
+<body>
+    <!--
+        a tag:
+        -Hyper Link tag
+
+        -속성:
+        href: 이동할 페이지 경로 혹은 url 주소
+        target: 이동할 페이지를 보여줄 대상 지정
+                _self(default): 자기자신의 브라우저에 이동할 
+                                페이지 표시
+                _top
+                _parent
+                _blank(새창(탭)으로 페이지가 열림)
+        -inline element
+
+        -$중요$: a tag를 이용해 이동할 페이지로 값을 전달할 수 있다.
+                쿼리스트링을 이용해서 값을 전달
+        
+        -쿼리 스트링:
+        url에서 페이지명 다음에 ? 로 연결한 문자열.
+        여러개 전달시, &로 구분해서 값을 전달
+        ex)
+        <a href = "주소">클릭</a>
+
+        -a tag으로 값을 전달하면 get방식
+
+
+        -링크 거는 방법
+        절대주소: 링크거는 페이지의 위치가 바뀌더라도 주소가 절대로 변하지 않음
+            https://~로 링크를 걸거나
+            /(홈 디렉토리의 루트를 의미)로 시작하면 절대주소다.
+                /앞에는 도메인이 숨겨져있는것
+            예) http://www.naver.com/  blahblah
+            
+            
+        상대주소: 링크거는 페이지의 위치에 따라 주소가 변경
+            . 으로 시작하거나(현재 directory를 의미)
+            .. 으로 시작할때 상대주소이다.(상위 directory를 의미)
+
+        결론:
+        !!!!!항상 절대주소로 링크걸기!!!!
+         
+    -->
+
+    <!--
+        남성복 쇼핑몰
+        "/app/Eclog/js/
+        cid.generate.js?vs=3d0b473968a0ec4ec41e3bf59df3aa51"></script>
+        "//wcs.naver.net/wcslog.js"
+    -->
+<div>
+    <h2>A tag</h2>
+    <h3>_self(현재 창에 이동할 페이지의 내용을 표시: 디폴트)</h3>
+    <a href="./ULOL08.html">target속성 미지정 (상대경로)-ULOL08.html</a><br/>
+    <a href="http://127.0.0.1:5500/HTML5/ULOL08.html">target속성 미지정 (절대경로-http로 시작)-ULOL08.html</a><br/>
+    <a href="/HTML5/ULOL08.html">target속성 미지정 (절대경로-/로 시작)-ULOL08.html</a>
+    <!--앞의 도메인 부분을 지운다.-->
+    <h3>_blank(현재 창이 아닌 새로운 창(탭)에 이동할 페이지의 내용을 표시</h3>
+    <a href="../JAVASCRIPT_ES5/Variable01.html" 
+    target="_blank">target속성 지정(상대경로)-variable01.html</a>
+    <h3>쿼리 스트링으로 데이타 전달</h3>
+    <a href="ULOL08.html?user=kim&name=홍길동&age=20">GET 방식으로 데이타 전송</a>
+</div>
+
+</body>
+</html>
