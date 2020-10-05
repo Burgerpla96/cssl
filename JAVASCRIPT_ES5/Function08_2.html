@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function08_2.html</title>
+    <script>
+        /*
+        callByValue
+        callByReference
+        */
+       var param = 100, args=1;//window의 전역변수
+       console.log(window.param);
+       function callByValue(param,args){//함수의 지역변수 
+        var temp = param;
+        param = args;
+        args = temp;
+        console.log('callByValue함수 안: param=%s,args=%s',param,args);
+       }
+       //함수 호출
+       callByValue(param,args);
+       console.log('callByValue함수 밖: param=%s,args=%s',param,args);
+
+       //callByReference -참조에 의한 호출, 값이 아닌 객체의 주소 전달
+       var arr = [100,1];
+       var callByRef = function(arr){
+           var temp = arr[0];
+           arr[0] = arr[1];
+           arr[1] = temp;
+           console.log('callByRef함수 안: arr[0]=%s,arr[1]=%s',arr[0],arr[1]);
+       };
+       //함수 호출
+       callByRef(arr);
+       console.log('callByRef함수 밖: arr[0]=%s,arr[1]=%s',arr[0],arr[1]);
+
+       //지역변수와 전역변수 충돌시 지역변수가 우선
+       var mVar = 100;//
+       function conflict(mVar){//매개변수는 지역변수
+        console.log(this);//this는 window객체 //이 함수를 호출하는 것은 window
+        mVar = mVar*2;//매개변수에 매개변수*2 저장
+        this.mVar = mVar*2 //전역변수this.mVar에 매개변수*2 저장
+        console.log('함수 안 mVar: ',mVar);
+       }
+       window.conflict(mVar);
+       console.log('함수 밖 mVar: ',mVar);
+
+
+    //    var member;
+    //    //참조에 의한 호출 예제
+    //    function setMember(member){
+    //        for(var i=0 ; i<2 ; i++){
+    //            member.push(prompt(i+1+'번째 이름 입력?',''));
+    //            member.push(prompt(i+1+'번째 나이 입력?',''));
+    //            member.push(prompt(i+1+'번째 주소 입력?',''));
+    //        }
+    //    }
+    //    //함수 호출
+    //    setMember(member);
+    //    //출력
+    //    member.forEach(function(item){
+    //     console.log(item);
+    //    });
+        
+
+       /*
+       문제1- 배열을 매개변수로 입력받아 배열을 크기순으로 (큰값부터)
+       재정렬하는 함수를 정의해라
+       */
+      var arr = [9,64,856,23,65,11,0];
+      //1)함수정의
+      function sor(arr){
+          for(var k=0 ; k<arr.length-1 ; k++){
+              for(var j=k+1 ; j<arr.length ; j++){
+                  if(arr[k] <= arr[j]){
+                    var temp = arr[k];
+                    arr[k] = arr[j];
+                    arr[j] = temp;
+                  }
+                    
+              }
+          }
+      }
+      //2)함수 호출
+      sor(arr);
+      //3)출력
+      document.write(arr);
+       
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

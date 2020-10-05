@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>If04.html</title>
+
+    <script>
+        /*
+        자바 스크립트- if 식에 비교식이나, 논리식말고도 모든 식이 올 수 있다.
+        0, null 그리고 false 이외의 모든 값을 true로 판단하기 때문
+        */
+       var nullVar = null,num1 = num2 = 10;
+       if(nullVar) document.write('null은 ture다<br/>');
+        else document.write('null은 false다<br/>');
+        document.write(typeof(num1));//num1은 number 10이다.
+        if(num1-num2)
+            document.write('num1-num2는 true다.')
+        else document.write('num1-num2는 false다.(숫자0)')
+        document.write('<br/>');
+        /*
+        자바와 다르게 판단식이 참이거나 거짓일때 결과값을 변수에 담지 않아도 됨.
+        결과값을 변수에 담지 않아도 됨.
+        
+        방식1) 
+        자바에서는 에러 
+        판단식 ? 참일때 expr : 거짓일때 expr;
+        방식2) 
+        var 변수 = 판단식 ?  참일때 값 : 거짓일때 값;
+        */
+        num1>num2 ? document.write('num1이 num2보다 크다.'): document.write('num1이 num2보다 작다.');
+        document.write('<br/>');
+        var result = num1 >= num2 ? num1+'은'+num2+'보다 크다.':num1+'은'+num2+'보다 작거나 같다.'
+        document.write(result);
+        
+
+    </script>
+</head>
+
+<body>
+    <fieldset>
+        <legend>성적 출력</legend>
+        국어 <input type='text' id='kor'/>
+        영어 <input type='text' id='eng'/>
+        수학 <input type='text' id='math'/>
+        <span id='span' style='color:red;font-weight: bold;'>여기에 출력</span>
+        <button onclick= 'getGrade();'>확인</button>
+    </fieldset>
+    <script>
+        var korInput = document.getElementById('kor'); 
+        // kor변수가 위의 텍스트 상자를 의미 
+        // parseInt사용하여 텍스트로 입력받고 숫자로 변환
+        var engInput = document.getElementById('eng');
+        var mathInput = document.getElementById('math');
+        //span tag(요소)객체 얻기
+        var span = document.getElementById('span');
+        function getGrade(){
+            var kor = parseInt(korInput.value);
+            var eng = parseInt(engInput.value);
+            var math = parseInt(mathInput.value);
+            //평균 구하기
+            var avg = (kor+eng+math)/3;
+            if(avg >=90) span.innerHTML='A학점';
+            else if(avg>=80) span.innerHTML='B학점';
+            else if(avg>=70) span.innerHTML='C학점';
+            else if(avg>=60) span.innerHTML='D학점';
+            else span.innerHTML='F학점';
+            span.innerHTML += ': '+avg; //속성을 변수로 생각하기.
+        }
+        //위에서 아래로 실행되므로 script가 fieldset위에 있으면 안된다.
+    </script>
+
+</body>
+</html>

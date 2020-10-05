@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array03_2.html</title>
+    <script>
+        document.write('<h2>배열의 주요 함수</h2>');
+        var method = [];
+        document.write('<h3>1.배열 요소 추가: 인덱스 혹은push()함수</h3>');
+        //1. index를 지정해 추가
+        method[0] = 100;
+        //2. push() method 사용.배열의 끝에 요소추가
+        method.push(200);
+        //3. unshift() method 사용-배열의 맨앞에 요소추가
+        //기존의 요소 인덱스가 값이 1씩 증가
+        method.unshift(300);
+        //배열명.forEach(function(변수){});//배열에서 꺼내온 요소를 넣는다.
+        method.forEach(function(item){
+            document.write(item+'<br/>');
+        });
+
+        document.write('<h3>1.배열 요소 삭제</h3>');
+        //1. pop() method: 맨뒤에서 요소를 삭제후, 삭제요소를 반환
+        document.write('삭제한 요소:'+method.pop());
+        document.write('<br/>마지막 요소 삭제후 배열 크기:'+method.length);
+        //2. shift() 메서드 사용 - 배열의 맨 앞에서 부터 삭제
+        document.write('<br/>삭제한 배열 요소:'+method.shift());
+        document.write('<h4>삭제후 출력</h4>');
+        for(var i=0;i<method.length;i++){
+            document.write('method['+i+']='+method[i]+'<br/>');
+        }
+        document.write('<h3>3.배열 요소 추출</h3>')
+        /*
+        1.slice(start[,end])- 
+        start번째부터 end-1번째까지의 배열요소로 새로운 배열을 생성
+        인자가 음수면 우측 (마지막 원소)으로 부터 앞쪽으로
+        전달인자 만큼 위치한 원소를 가리킴
+        */
+        method.push(200);
+        method.push(300);
+        method.push(400);
+        method.push(500);
+        method.slice(3).forEach(function(e){
+            document.write(e+'<br/>');
+        });
+        document.write('<h4>slice()후 원본 배열</h4>');
+        method.forEach(function(e){
+            document.write(e+'<br/>');
+        });
+        document.write('<hr/>')
+        method.slice(2,5).forEach(function(e){
+            document.write(e+'<br/>');
+        });
+        
+        //        -5   -4  -3  -2  -1   끝에서 부터 인덱스 매기기
+        document.write('<hr/>')
+        method.slice(-2,-1).forEach(function(e){
+            document.write(e+'<br/>');
+        });
+        document.write('<hr/>')
+        method.slice(-3,3).forEach(function(e){
+            document.write(e+'<br/>');
+        });
+        //2. splice(start,삭제할 개수[,추가할 값,...])
+        //추가할 값들을 start와 삭제
+        //원본배열이 변경된다.(slice(), splice()차이)
+        //method:[100,200,300,400,500]
+        method=[100,200,300,400,500];
+        
+        // document.write('<h4>splice한 배열</h4>');
+        // method.splice(1,3).forEach(function(item){
+        //     document.write(item+'<br/>');
+        // });
+        
+        // document.write('<h4>splice한 후 원본배열</h4>');
+        // method.forEach(function(item){
+        //     document.write(item+'<br/>');
+        // });
+        // document.write('////////////////////////////</br>')
+        //document.write(method);
+        document.write('////////////////////////////</br>')
+        method.splice(1,3,'이백','삼백','사백','민규형 이렇게 하는거에요').forEach(function(item){});
+        document.write(method+'<br/>');
+
+        document.write('<h3>4. 배열 요소의 인덱스를 찾기</h4>');
+        //indexOf(), lastIndetOf(); 배열의 요소 중에 특정한 값의 인덱스 반환
+        document.write(method.indexOf('이백')+'<br/>');
+        document.write(method.indexOf(1000)+'<br/>');
+        method.push(100); //method:[100,'이백','삼백','사백',500,100]
+        document.write(method.lastIndexOf(100)+'<br/>');
+        
+        document.write('<h3>5. Join 함수</h4>');
+        //join([구분자]) - 배열의 모든 요소들을 문자열로 변환
+        //구분자는 쉼표(,)가 기본 값
+        document.write(method.join()+'<br/>');
+        document.write(method.join('*')+'<br/>');
+
+        document.write('<h3>6. reverse 함수</h4>');
+        //reverse() 배열의 요소 순서를 반대로 하여 반환
+        //원본 배열이 변경된다.
+        method.reverse().forEach(function(item){
+            document.write(item+'<br/>');
+        });
+
+        document.write('<h3>7. sort 함수</h4>');
+        //sort([무명함수])- 배열 안의 요소들을 정렬하여 반환
+        //인자가 없을 경우 배열안의 요소들을 오름차순으로 정렬
+        //function(인자1,인자2){return 인자1-인자2;}//오름차순
+        //function(인자1,인자2){return 인자2-인자1;}//내림차순
+
+        var newArray = [5,2,3,1,4];
+        //오름차순
+        // newArray.sort().forEach(function(item){
+        //     document.write(item+'<br/>');
+        // });
+        //sort후 원본배열 출력 --- 원본이 변한다.
+        // document.write('<h4>sort 후 원본배열 출력</h4>');
+        // newArray.forEach(function(item){
+        //     document.write(item+'<br/>');
+        // });
+        
+        //내림차순
+        newArray.sort(function(s1,s2){return s2-s1;});
+        document.write('<h4>sort한후 원본배열(내림차순)</h4>')
+        newArray.forEach(function(item){
+             document.write(item+'<br/>');
+        });
+
+
+        document.write('<h3>8. concat 함수</h4>');
+        //concat() 기존 배열의 모든 요소에 concat() 메서드의 인자들을 
+        //추가한 새로운 배열 반환
+        //원본 배열은 변하지 않고 기존베열에 추가된 새로운 배열 반환
+        newArray.concat(6,7,8,9,10).forEach(function(e){
+            document.write(e+'<br/>');
+        });
+        document.write('<h4>concat한후 원본배열</h4>')
+        newArray.forEach(function(item){
+             document.write(item+'<br/>');
+        });
+
+
+
+    </script>
+</head>
+
+<body>
+    
+
+
+    
+</body>
+</html>

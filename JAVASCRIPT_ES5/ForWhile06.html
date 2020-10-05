@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ForWhile06.html</title>
+</head>
+<script>
+    /*
+    자바: for문 안에서 선언된 변수는 for문이 끝나면 소멸된다.
+    자스: script태그 안에서 선언된 변수는 해당 페이지 모든 영역에서 사용가능하다.
+        예) if block안에서 실행된 변수도 밖에서 사용가능
+        단, 함수안에서 사용된 변수는 지역 변수로 인식한다.
+    */
+   for(var i=0 ; i<5 ; i++){
+       var gVar = 'for문 안에서 선언된 변수';
+       document.write('i='+i+'<br/>');
+   }
+   document.write('for문이 끝난후 i='+i+' gVar: '+gVar);
+   var a = 0;
+   document.write(a++);
+   document.write(++a);
+   document.write(a);
+   /*
+   1 0 0 0 0
+   0 1 0 0 0
+   0 0 1 0 0
+   0 0 0 1 0
+   0 0 0 0 1
+   출력
+   */
+   document.write('for문 버젼<br/>');
+   for(var j=0; j<5 ; j++){
+       for(var k=0 ; k<5 ; k++){
+           if(k==j) document.write('1 ');
+           else document.write('0 ');
+       }
+       document.write('<br/>');
+   }
+
+   document.write('while문 버젼<br/>');
+   var n = 0;
+   document.write('<table style="text-align:center;background-color:tomato;border-spacing:5px; width:250px;">');
+   while(n<5){
+        var m = 0;
+        document.write('<tr style="background-color:white; height:50px">');
+            while(m<5){
+                if(n==m) document.write('<td style= background-color:green>1 </td>');
+                else document.write('<td>0 </td>')
+                m++;
+            }
+         document.write('</tr>');
+        n++;
+   }
+   document.write('</table>');
+   //table tag사용해 구구단 쓰기
+   document.write("구구단");
+   var table1 = "<table style='background-color:green; border-spacing:5px; height:100px;'>";
+   for(var b=1 ; b<10 ;b++){
+       table1 += '<tr style="background-color:white;">'
+       for(var c=2 ; c<10 ; c++){
+           table1 += '<td>'+c+' * '+b+'='+c*b+'</td>'
+       }
+       table1 += '</tr>';
+   }
+   table1 += '</table>';
+   document.write(table1);
+</script>
+<body>
+    <script>
+        document.write('<br/>body tag안에서 사용 i='+i+' gVar: '+gVar);
+    </script>
+</body>
+</html>
