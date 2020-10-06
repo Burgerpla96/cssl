@@ -40,14 +40,15 @@
 <body>
     <fieldset>
         <legend>성적 출력</legend>
-        국어 <input type='text' id='kor'/>
+        국어 <input type='text' id='kor' value=50 />
         영어 <input type='text' id='eng'/>
         수학 <input type='text' id='math'/>
         <span id='span' style='color:red;font-weight: bold;'>여기에 출력</span>
         <button onclick= 'getGrade();'>확인</button>
     </fieldset>
     <script>
-        var korInput = document.getElementById('kor'); 
+        
+        //var korInput = document.getElementById('kor'); 
         // kor변수가 위의 텍스트 상자를 의미 
         // parseInt사용하여 텍스트로 입력받고 숫자로 변환
         var engInput = document.getElementById('eng');
@@ -55,7 +56,7 @@
         //span tag(요소)객체 얻기
         var span = document.getElementById('span');
         function getGrade(){
-            var kor = parseInt(korInput.value);
+            var kor = parseInt(document.getElementById('kor').value);
             var eng = parseInt(engInput.value);
             var math = parseInt(mathInput.value);
             //평균 구하기

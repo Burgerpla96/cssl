@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas19_2.html</title>
+</head>
+<body>
+    <div style="background-color: ;">
+        <h2>canvas tag</h2>
+        <!--canvas의 가로,세로폭은 반드시 속성으로 줘야한다.-->
+        <canvas id="canvas" width="200" height="200" style="background-color: rgb(255, 144, 222);"></canvas>
+        <script>
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+
+            ctx.font = '25 굴림체';
+            ctx.fillStyle = 'blue';//채우기 색상 설정
+
+            //기준선 보이기
+            ctx.strokeStyle='red';//선 색상결정
+            ctx.moveTo(50,20);
+            ctx.lineTo(50,180);
+            ctx.stroke();//선긋기
+            //그림자 표시를 위한 설정
+            ctx.shadowColor = 'rgba(0,255,0,0.8)';
+            ctx.shadowOffsetX = 5;//그림자 시작 위치 x값
+            ctx.shadowOffsetY = 5;//글자의 시작 위치가 0,0
+            ctx.shadowBlur = 5;//max값이 100 //그림자 퍼짐정도
+            ctx.textAlign = 'start';//글자의 시작에 ctx선이 붙어있다.
+            ctx.fillText('HTML5_START',50,50);// 단, 좌표는 canvas기준
+
+            ctx.textAlign = 'end';
+            ctx.fillText('HTML5_END',50,80);
+
+            ctx.textAlign = 'center'; //글자의 중간에 ctx선이 있다.
+            ctx.fillText('HTML5_CENTER',50,110);
+
+            ctx.textAlign = 'left';
+            ctx.fillText('HTML5_LEFT',50,140);
+
+            ctx.textAlign = 'right';
+            ctx.fillText('HTML5_RIGHT',50,170);
+        </script>
+    </div>
+</body>
+</html>

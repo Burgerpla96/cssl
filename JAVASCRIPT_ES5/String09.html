@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String09.html</title>
+    <script>
+        var str1 = '안녕 자바스크립트';
+        var str2 = "Hello JavaScript";
+        var str3 = "Hi JS";
+        var str4 = new String('Hi JS');
+        console.log('str3의 자료형:%s, 생성자타입:%s',typeof str3, str3 instanceof String);
+        console.log('str4의 자료형:%s, 생성자타입:%s',typeof str4, str4 instanceof String);
+        console.log(str3);//Hi JS
+        console.log(str4);//String {"Hi JS"}//배열 형태로 저장
+        //1)문자열의 길이 얻기 - length 속성  //한글 영문 모두 하나로 친다.
+        console.log('str1의 길이:%s',str1.length);
+        console.log('str2의 길이:%s',str2.length);
+        console.log('str4의 길이:%s',str4.length);
+        //2)문자열 객체의 함수를 이용해서 텍스트 꾸미기
+        document.write('<h2>함수로 텍스트 효과주기</h2>');
+        document.write('볼드체(함수):'+str1.bold()+'<br/>');
+        document.write('볼드체(tag):<b>'+str1+'</b><br/>');
+        document.write('이탤릭체(함수):'+str1.italics()+'<br/>');
+        document.write('이탤릭체(tag):<i>'+str1+'</i><br/>');
+        document.write('함수:'+str1.italics().bold()+'<br/>');
+        document.write('태그:<i><b>'+str1+'</b></i><br/>');
+        document.write('가운데 선 긋기(function):'+str1.strike()+'<br/>');
+        document.write('가운데 선 긋기(tag):<strike>'+str1+'</strike><br/>');
+        var url = "https://www.nate.com";
+        document.write("링크걸기(함수):"+str1.link(url)+'<br/>');
+        document.write('링크걸기(tag):<a href="'+url+'">'+str1+'</a><br/>');
+        //3)대소문자 변경
+        document.write('<h2>대소문자로 변경</h2>');
+        document.write('대문자:'+str2.toUpperCase()+'<br/>');
+        document.write('소문자:'+str2.toLowerCase()+'<br/>');
+        //4)특정 위치(인덱스)반환
+        document.write('<h2>charAt(인덱스)</h2>');
+        document.write('str3에서 인덱스가 3인 문자:'+str3.charAt(3)+'<br/>');
+        document.write('자바 스크립트'.charAt(2));
+        //5) substring (시작인덱스, 끝인덱스)
+        document.write('ACADEMY'.substring(3,7));
+        //5-1) substr (시작 인덱스,문자열갯수)
+        document.write('ACADEMY'.substr(3,4));
+        //6) 특정위치 아스키 코드값 얻어오기 charCodeAt(index)  --자바의 codePointAt
+        document.write('<h2>charCodeAt(index)</h2>');
+        document.write('ACADEMY'.charCodeAt(0));
+        //7) 아스키 코드값을 문자로 변환 
+        //String.fromCharCode(ASCII) 자바로 치면 정적 메서드
+        document.write('<h2>fromCharCode(코드값)</h2>');
+        document.write(String.fromCharCode('68'));
+
+
+        //배열과 string
+        document.write('<h2>문자열을 배열처럼</h2>');
+        for(var i=0;i<str3.length;i++){
+            document.write(str3[i]+'<br/>');
+        }
+
+        //문제)
+        /*
+        문자열을 ㅁㅐ개변수로 받는 함수로, 받은 인자가 숫자형식이 아니면 false를 반환
+        숫자형식이면 true를 반환하는 함수를 정의해라.
+        //12A - false , '가100' -false , 99 - true
+        */
+        //자바와 다르게 '0' >2 가 false이다. 
+        //'0'을 숫자로 인식해준다.
+        //자바는 ''안을 char로 인식해 숫자 0을 아스키코드 48로 바꿔서 연산한다.
+        //자스에서는 'a'>2를 비교할 수 없다.따라서 false 단, 자바는 아스키코드로 바꿔서 가능
+
+        document.write('<hr style="background-color: red; height: 3px;"/>');
+        //hr style에 height가 없으면 두께가 없어 색이 안 나온다.
+        document.write(isNaN(parseInt('가1가')));
+        //숫자로만 이루어진게 아니면 true가 나온다.
+
+        document.write('<h4>1번 방식으로 풀어보기</h4>'+'<br/>');
+        
+        //1번 방식. 자료형을 확인해서 숫자인지 판단
+        // parseInt('a123') 는 NaN 이 나오고 타입은 Number이다.
+        //NaN 의 비교는 isNaN을 해야한다.
+        var isNum = function(str){
+            if(isNaN(parseInt(str))) return false;
+            return true;
+        };
+        
+        document.write(isNum('a123')+'<br/>');
+        document.write(isNum(123)+'<br/>');
+        document.write('<hr/>')
+        document.write('<h4>2번 방식으로 풀어보기</h4>'+'<br/>');
+        //2번 방식. 숫자와 문자의 대소를 비교하면 자스에서는 false가 나오는 것을 이용
+        var isNumber = function(str){
+            for(var i=0;i<str.length;i++){
+                if((str[i]>=0 && str[i]<=9)) return false;
+            };
+            return true;
+        }
+    
+        document.write(isNumber('12A')+'<br/>');
+        document.write(isNumber('가100')+'<br/>');
+        document.write(isNumber('12')+'<br/>');
+
+
+        //8) 구분자로 문자열을 분리-배열 반환
+        //split(구분자)
+        //만약 해당 구분자가 없으면 주모건 배열 크기가 1인 배열에 문자열 전체가 저장된다.
+        var tel= '010.2312.1423';
+        var arr = tel.split('.');//자바에서는 '\.'
+        //자바는 정규표현식이 아니게 역슬래시를 넣어야 하지만
+        //자스는 그냥 된다. 정규표현식X
+        for(var i=0;i<arr.length;i++){
+            document.write('arr['+i+']: '+arr[i]+'<br/>');
+        }
+
+        //9) 특정 문자열의 인덱스값 알아내기
+        //indexOf("찾는 문자열"): 찾는 문자열이 존재하면 찾는 문자열의 시작인덱스 반환
+                                //값없으면 -1반환
+
+        document.write('ACADEMY'.indexOf('ACA')+'<br/>');//0
+        //9-1) lastIndexOf 자바와 같다.
+        document.write('ACADEMY'.indexOf('A')+'<br/>');//0
+        document.write('ACADEMY'.lastIndexOf('A')+'<br/>');//2
+
+       
+
+
+        
+        //문제) 배열 매개변수로 받는 함수 만들어 중간 도메인 얻기
+         //이메일 주소에서 @와 .사이에 있는 값만 얻어오기
+        var email = ['kim@naver.com','park@cyworld.com','lee@nate.com']
+       //1번 방법
+        var emailSPL = function(arr){
+            var str = '';
+            for(var a=0 ; a<arr.length;a++){
+                var firstArr = arr[a].split('@');
+                str += firstArr[1].split('.')[0] +' ';
+            }
+            return str;
+        };
+        document.write(emailSPL(email));
+        document.write('<hr/>');
+       //2번 방법
+       var emailSub = function(arr){
+           var start;
+           var end;
+           var str = '';
+            for(var b=0;b<arr.length;b++){
+                start = arr[b].indexOf('@');
+                end = arr[b].lastIndexOf('.');
+                str += arr[b].substring(start+1,end) + ' ';
+            }
+            return str;
+       };
+       document.write(emailSub(email));
+       document.write('<hr/>');
+
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

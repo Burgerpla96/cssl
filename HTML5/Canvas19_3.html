@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas19_3.html</title>
+    <script>
+        window.addEventListener('load',function(){
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+            ctx.beginPath();
+            ctx.strokeStyle='red';
+            ctx.moveTo(60,313);
+            ctx.lineTo(120,166);
+            ctx.lineTo(180,76);
+            ctx.lineTo(240,256);
+            ctx.lineTo(300,70);
+            ctx.lineTo(360,200);
+            ctx.lineTo(420,120);
+            ctx.lineTo(480,70);
+            ctx.stroke();
+            ctx.closePath();
+
+            //이미지 그리기용
+            var canvasimg = document.getElementById('canvasimg');
+            ctx = canvasimg.getContext('2d');
+            var img = new Image();
+            img.src='../Images/button.png';
+            img.onload = function(){
+                //이미지 원본 크기: drawImage(image 객체,그림시작x,y)
+                //ctx.drawImage(img,0,0);
+                //이미지 크기 조정: drawImage(image 객체,그림시작x,y,width,height)
+                ctx.drawImage(img,0,0,100,100);
+            };
+            //window.addEventListener('load',function(){}; 랑 같다.
+            ctx.drawImage()
+        });
+        //모든 tag가 load되면 함수 실행..
+    </script>
+</head>
+<body>
+    <div>
+        <h2>canvas tag</h2>
+         <!--canvas의 가로,세로폭은 반드시 속성으로 줘야한다.-->
+        <canvas id='canvas' width='550' height='450' style='background-color: burlywood;'></canvas>
+        <canvas id='canvasimg'width='300' height='300' style='border: 1px green solid'></canvas>
+    </div>
+
+</body>
+</html>

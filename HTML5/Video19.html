@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video19.html</title>
+</head>
+<body>
+    <h2>기본 비디오 태그</h2>
+    <video src="Media/video.mp4" controls width="200" height="200">
+        <!--autoplay사용가능-->
+        video tag를 지원하지 않는 브라우저입니다.<br/>
+        여기를 클릭 <a href="Media/video.mp4">클릭</a>하세요.
+    </video>
+    <h2>source하위 태그 사용</h2>
+    <video controls width="200" height="200" loop>
+        <source src="Media/video.3gp" type="video/3gpp"/>
+        <source src="Media/video.mp4" type="video/mp4"/>
+        <!--브라우저가 지원하는 하나만 재생이 된다.-->
+    </video>
+
+    <h2>custom video</h2>
+    <div>
+       <video width="300" height="200" id="video" src="Media/video.mp4" hidden></video>
+    </div>
+    <div>
+        <input type="button" value="PLAY" onclick="play();"/>
+        <input type="button" value="PAUSE" onclick="pause();"/>
+        <input type="button" value="STOP" onclick="stop();"/>
+        &nbsp;&nbsp;<sapn id="current"></sapn> / <span id="total"></span>
+    </div>
+    <script>
+        //video객체 얻기
+        var video = document.getElementById('video');
+        
+        var currentSpan = document.getElementById('current');
+        var totalSpan = document.getElementById('total');
+        //progress 객체 얻기
+        var progress = document.getElementById('progress');
+
+        video.ontimeupdate = function(){
+            //video의 총재생시간,현재 재생시간 얻고 설정
+            totalSpan.innerHTML = video.duration;
+            currentSpan.innerHTML = video.currentTime;
+            //타임 업데이트에 따른 프로그레스의 진행정도 표시
+            //max속성 이용
+            progress.max = video.duration;
+            progress.value = video.currentTime;
+        };
+        var play = function(){
+            video.hidden = '';//비디오 보이게 하기
+            video.play();
+        };
+        var pause = function(){
+            video.pause();
+        };
+        var stop = function(){
+            //stop()함수 지원 안하기 때문에 직접 구현
+            if(video.played){//현재 재생중이라면
+                video.currentTime = 0;
+                video.pause();
+
+            }
+        };
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas19_1.html</title>
+</head>
+<body>
+    <div>
+        <h2>canvas tag</h2>
+        <!--canvas의 가로,세로폭은 반드시 속성으로 줘야한다.-->
+        <canvas id="canvas" width="200" height="200" style="background-color: aquamarine;"></canvas>
+        <script>
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+
+            ctx.beginPath();
+            ctx.moveTo(0,0);
+            ctx.lineTo(50,50);
+            ctx.stroke(); //선긋기
+            ctx.closePath();
+            //Path열고(beginPath) 닫고(closePath) 하기
+
+            ctx.beginPath();
+            ctx.lineCap='round';
+            ctx.lineWidth=10;
+            ctx.moveTo(50,50);
+            ctx.lineTo(100,50);
+            ctx.stroke(); //선긋기
+            ctx.closePath();
+
+            ctx.beginPath();
+            ctx.lineWidth=5;
+            ctx.moveTo(100,50);
+            ctx.lineTo(100,100);
+            ctx.stroke(); //선긋기
+            ctx.closePath();
+
+            ctx.fillStyle='rgba(255,0,0,0.6)';//alpha는 투명도 0~1, 0이면 완전 투명
+            ctx.fillRect(100,100,50,50);//사각형그리기
+           
+
+
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+
+JavaScript & HTML 복습-201006 
+
+
+개념문제
+문제 1) 
+document.write(parseInt('가') == NaN); 는 false이다. (O,X)
+
+문제 2) 
+다음중 plus가 타입이 function이 아닌 것은?
+1) function plus(num1,num2){return num1 + num2};
+2) var plus = function(num1,num2){return num1+num2};
+3) var plus = (function(num1,num2){return num1+num2})(10,20);
+
+문제 3) 
+
+문제 4)
+문제 5)
+
+
+
+
+코딩문제
+문제 1) 자료형의 비교를 해보자(isNaN() method 사용하기)
+	문자열에 숫자가 포함되지 않은지 확인하는 함수를 만들자.
+	ex) '가2131가'--false ,  '123' --false,   '가가가' --true
+
+문제 2) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+개념문제 답
+1) parseInt('가')에서 '가'가 숫자가 아니기 때문에 Not a Number로 NaN이 되지만
+   NaN은 자신과의 비교에서 논리적 오류가 있어 NaN == NaN 은 false가 나온다.
+   정답: O
+
+2) 
+
+
+
