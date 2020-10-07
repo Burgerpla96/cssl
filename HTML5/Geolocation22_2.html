@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation22_2.html</title>
+</head>
+<body>
+    <fieldset>
+        <legend>Geolocation API- 현재 위치 갱신하기</legend>
+        <button onclick="start();">위치추적 시작</button>
+        <button onclick="stop();">위치추적 정지</button>
+        <span id="display" style="color: red;font-size: 1.5em;font-weight: bold;"/></span>
+    </fieldset>
+    <script>
+        console.log(window.navigator.geolocation);
+        //DOM(Document Object Model)객체 얻기
+        var span = document.getElementById('display');
+        var watcher;
+        function start(){
+            if(navigator.geolocation){
+                span.innerHTML = 'Geolocation API를 지원하는 브라우저입니다.';
+                //PositionOptions객체 설정
+                var options = {timeout:3000,maxinumAge:5000};
+                //현재위치 정보 갱신시마다 위치 얻기
+                watcher = navigator.geolocation.watchPosition(successCallback,errorCallback,options);
+                console.log('watcher: '+watcher);//숫자가 나온다.
+                
+            }
+        };
+        
+        var stop = function(){
+            //위치정보 받기 중지
+            navigator.geolocation.clearWatch(watcher);
+        }
+
+
+        //위치정보를 받아 올때 자동으로 실행될 콜백함수
+        function successCallback(position){
+            console.log('position의 자료형: '+position);
+            console.log(position);
+            //위도 경도 얻기
+            var lat = position.coords.latitude;//위도
+            var lng = position.coords.longitude;//경도
+            span.innerHTML = '위도: '+lat+'경도: '+lng;
+        };
+        //위치정보를 받아 오지 못 할때 실행될 함수
+        //인자는Positionerror객체
+        function errorCallback(error){
+            switch(error.code){
+                case 1: span.innerHTML = '허용이 거부됨';break;
+                case 2: span.innerHTML = '위치확인 불가';break;
+                case 3: span.innerHTML = '시간초과';break;
+                default: span.innerHTML = error.message;
+
+            }
+        };
+
+    </script>
+</body>
+</html>
