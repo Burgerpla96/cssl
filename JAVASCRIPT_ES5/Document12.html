@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document12.html</title>
+    <script>
+        /*
+        DOM(Document Object Model) 객체 얻기
+        1.tag명으로 얻기 document.getElementsByTagName('tag명');
+        2.name속성으로 얻기 document.getElementsByName('name속성 값');
+        3.class이름으로 얻기 document.getElementsByClassName('class속성 값');
+        4.id값으로 얻어오기 document.getElementById('id속성값');
+
+        5.여러가지 속성중 하나써서 얻어오기 document.querySelectorAll(tag,name값,...등사용가능);
+
+        1,2,3은 값이 여러개일 수 있어 배열형태로 저장된다. 단, 진짜 배열인것은 아니다.!!!!
+        배열이 아닌 HTMLCollection 객체이다. 배열과 유사히 사용가능
+        해당 객체가 없을시, 길이가 0인 배열형태 반환
+        존재하지 않ㅇ르 시 null반환
+        */
+
+        //버튼에 입력시...실행될 함수
+        function fnGetElementsByTag(){
+            var inputs = document.getElementsByTagName('input');
+            console.log(typeof inputs);//Object
+            console.log('%O', inputs);//HTMLCollection(11) ... length속성, item()함수 가짐
+            console.log('input tag의 총수: ',inputs.length)
+            console.log(inputs.item(0).value); //inputs.item(0)이 0번째 input tag를 가져온것
+            console.log(inputs[0].value);//POL 배열형태로 접근 가능
+            //동일이름이 여러개인 경우 무조건 첫번째 노드(요소)만 반환
+            console.log(inputs.namedItem('inter').value);//inputs.item(0)과 같다. //POL
+
+            //배열에 적용할 수 있는 forEach()문 적용해보기
+            // inputs.forEach(function(item){
+            //     console.log(item);
+            // });
+            //HTMLCollection 객체이므로 forEach는 안된다.
+            /*
+            HTMLCollection.prototype.forEach = Array.prototype.forEach; 
+            //Array의 forEach() 함수를 HTMLCollection객체에도 넣어주었다.
+            console.log('HTMLColection에 추가한 forEach() 함수 요소 출력');
+            inputs.forEach(function(item){
+                console.log(item.value);
+            });
+            */
+
+            //코드값을 일반 텍스트로 변환하는 함수
+            var codeToText = function(code){
+                switch(code){
+                    case 'POL': return '정치';
+                    case 'ECO': return '경제';
+                    default: return '연예';
+                }
+            };
+
+           var checkString = textString = '';
+            for(var i=0;i<inputs.length;i++){
+                //체크박스의 체크 여부 판단시에는 true 혹은 false로 판단
+                if(inputs[i].type == 'checkbox' && inputs[i].checked == true){
+                    checkString += codeToText(inputs[i].value)+' ';
+                }
+                if(inputs[i].type == 'text' && inputs[i].name == 'txt'){
+                    textString += inputs[i].value;
+                }
+            }//for문
+            console.log('체크된 값: '+checkString);
+            console.log('입력한 값: '+textString);
+            
+            
+        }////////////fnGetElementsByTag()
+
+     
+
+        //name속성으로 노드 가져오기
+        function fnGetElementsByName(){
+            var names = document.getElementsByName('inter');
+            console.log('자료형: ',typeof names);//Object
+            console.log(names);//NodeList
+            console.log('%O',names);
+            console.log(names.item(0).value);
+            console.log(names[0].value);
+            //체크 안된 것만 체크 되는 함수
+            //자스로 checkbox 체크 여부 판단시에는 true,'checked' 혹은 false,null로 판단 
+            names.forEach(function(item){
+                if(item.checked == true) item.checked = false;
+                else item.checked = true;
+            });
+        }///fnGetElementsByName()
+
+
+        function fnGetDomain(){
+            var aTag = document.getElementsByTagName('a');
+            //getElementsByTagName() 사용시 HTMLCollection 반환
+            HTMLCollection.prototype.myForEach = Array.prototype.forEach; 
+            aTag.myForEach(function(item){
+                if(item.href.indexOf('www') != -1){
+                    console.log(item.href);
+                }
+            });
+
+        }////fnGetDomain()
+
+
+        function fnGetElementsClass(){
+            var portals = document.getElementsByClassName('portal');
+            console.log('%O',portals);//HTMLCollection(3): HTMLCollection객체에 3개 요소
+            HTMLCollection.prototype.forEach = Array.prototype.forEach;
+            portals.forEach(function(item){
+                //시작태그와 종료태그 사이의 값 읽어오기
+                console.log(item.innerHTML);
+            });
+            
+        }////////////fnGetElementsClass()
+
+
+
+        function fnChangeImage(num){
+            var img = document.getElementById('image');
+            img.src = '../Images/'+num+'.jpg';
+        }////////////fnChangeImage()
+
+
+
+
+        var fnCopy = function(){
+            var src = document.getElementById('src');
+            var srcTxt1 = document.getElementById('srcTxt1');
+            var srcTxt2 = document.getElementById('srcTxt2');
+            var dest = document.getElementById('dest');
+            var destTxt1 = document.getElementById('destTxt1');
+            var destTxt2 = document.getElementById('destTxt2');
+
+            dest.value = src.value;
+            destTxt1.value = srcTxt1.value;
+            destTxt2_1.value = srcTxt2.value;
+
+        }//////////fnCopy()
+
+    </script>
+</head>
+
+<body>
+    <h2>태그명으로 얻기</h2>
+    <input type="checkbox" name="inter" value="POL" />정치
+    <input type="checkbox" name="inter" value="ECO" />경제
+    <input type="checkbox" name="inter" value="ENT" checked />연예
+    <input type="text" name="txt" />
+    <input type="button" value="태그명으로 DOM객체 얻기" onclick="fnGetElementsByTag()" />
+
+    <h2>이름으로 얻기</h2>
+    <input type="button" value="NAME속성에 지정한 값으로 DOM객체 얻기" onclick="fnGetElementsByName()" />
+    
+    <h2>태그명으로 객체 얻기2</h2>
+    <ul>
+        <li><a href="http://www.naver.com">네이버</a></li>
+        <li><a href="http://www.daum.net">다음</a></li>
+        <li><a href="http://www.nate.com">네이트</a></li>
+    </ul>
+    <button onclick="fnGetDomain()">도메인 얻어오기</button>
+
+    <h2>클래스명으로 객체 얻기</h2>
+    <ul>
+        <li><a href="#" class="portal">네이버</a></li>
+        <li><a href="#" class="portal">다음</a></li>
+        <li><a href="#" class="portal">네이트</a></li>
+    </ul>
+    <button onclick="fnGetElementsClass()">클래스명으로 DOM객체 얻어오기</button>
+
+    <h3>동적으로 이미지 교체(ID로 DOM객체 얻기)</h3>
+    <fieldset>
+        <legend>이미지 교체</legend>
+        <a href="javascript:fnChangeImage(1)">1번 이미지</a>
+        <a href="javascript:fnChangeImage(2)">2번 이미지</a>
+        <a href="javascript:fnChangeImage(3)">3번 이미지</a>
+        <a href="javascript:fnChangeImage(4)">4번 이미지</a>
+        <hr />
+        <img id="image" src="#" alt="이미지교체" style="width:200px;height:200px" />
+    </fieldset>
+
+    <fieldset>
+        <legend>전화번호 복사</legend>
+        <select id="src">
+            <option value="010">010</option>
+            <option value="011">011</option>
+            <option value="017">017</option>
+            <option value="019">019</option>
+        </select>
+        -
+        <input type="text" size="4" maxlength="4" id="srcTxt1" />
+        -
+        <input type="text" size="4" maxlength="4" id="srcTxt2" />
+        <br />
+        <input type="button" value="복사" onclick="fnCopy()" />
+        <br />
+        <select id="dest">
+            <option value="010">010</option>
+            <option value="011">011</option>
+            <option value="017">017</option>
+            <option value="019">019</option>
+        </select>
+        -
+        <input type="text" size="4" maxlength="4" id="destTxt1" />
+        -
+        <input type="text" size="4" maxlength="4" id="destTxt2" />
+    </fieldset>
+
+
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocationHistory13.html</title>
+    <script>
+
+        //location.href
+        //location.replace()
+        //location.reload() 새로고침
+
+        //history.go(1) 다음페이지 불러오기 2값을 넣으면 다다음
+        //-1을 넣으면 이전 페이지
+        //history.back() 은 history.go(-1)과 같다.
+        //history.forward() 는 은 history.go(1)과 같다.
+
+        //navigator.userAgent  user가 사용하는 브라우저 알려준다.
+
+
+        console.log(typeof window.location);//object
+        console.log('%O',location);//Location 이 가진 요소들 확인
+        console.log(location.href);//http://127.0.0.1:5500/JAVASCRIPT_ES5/LocationHistory13.html
+        console.log(location.protocol);//http:
+        console.log(location.port);//5500
+
+        //조건에 따라 화면 이동시킬때 주로 사용
+        //location.href = "IF04.html"; //'http://www.nate.com:80';
+        function fnLogin(){
+            var user = document.getElementById('user').value;
+            var pass = document.getElementById('pass').value;
+            // 아이디와 비번이 맞을 경우 이동시키기
+            if(user =='KIM' && pass == '1234'){
+                //location.href = "IF04.html";
+                location.replace('IF04.html');
+                //location.href 와 다르게 replace는 뒤로가기가 실행되지 않는다.
+            }
+            else {
+                //location.href = "ForWhile06.html";
+                location.replace('ForWhile06.html');
+            }
+           
+        }///////////fnLogin()
+
+
+    </script>
+</head>
+
+<body>
+    <h2>location & history & navigator객체</h2>
+    <fieldset>
+        <legend>로그인 화면</legend>
+        아이디 <input type="text" id="user" />
+        비밀번호 <input type="password" id="pass" />
+        <input type="button" value="로그인" onclick="fnLogin();" />
+        <input type="button" value="새로고침" onclick="location.reload()" />
+        <input type="button" value="history테스트" onclick="location.href = 'Operator02.html';" />
+        <input type="button" value="다음 페이지" onclick="history.go(1)" />
+        <input type="button" value="이전 페이지" onclick="history.back()" />
+        <input type="button" value="웹브라우저 종류" onclick="alert(navigator.userAgent)" />
+    </fieldset>
+</body>
+
+</html>

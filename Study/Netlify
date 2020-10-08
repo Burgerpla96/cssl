@@ -1,0 +1,18 @@
+
+Netlify
+
+    \indx.html
+
+build command는 프론트 엔드쪽으로 react파일을 할때 이용.
+
+
+pulbish directory로 설정을 변경하지 않으면 
+업로드 파일에서 root를 찾는다.(githube의 index.html을 찾는다.)
+
+
+만약 기존 netlify의 githube root 설정과 다르게 
+src에 inex.html을 넣고 git에 올렸다면
+publish directory를 /src로 해주어야 한다.
+
+
+

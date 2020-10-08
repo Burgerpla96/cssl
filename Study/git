@@ -1,0 +1,8 @@
+git branch -M main
+:브렌치 이름을 main으로 
+git branch -m main
+:소문자 m 기존 브렌치의 이름을 변경
+
+
+
+

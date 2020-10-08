@@ -12,19 +12,25 @@
             firstValue : function(){
                 this.value += 1;
                 console.log("firstValue : "+ this.value);
-
+                
                 secondValue = function(){
                     this.value +=1;
                     console.log('secondValue : '+this.value);
-                }
 
+                    thirdValue = function(){
+                        this.value +=1;
+                        console.log('thirdValue: '+this.value);
+                    }//thirdValue
+
+                    thirdValue();
+
+                }///secondValue
 
                 secondValue();
-            } 
+            }//firstValue
 
-
-            
         };
+        
         myObjext.firstValue();
 
     </script>
