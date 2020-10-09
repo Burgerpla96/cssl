@@ -13,7 +13,7 @@ document.write(parseInt('가') == NaN); 는 false이다. (O,X)
 3) var plus = (function(num1,num2){return num1+num2})(10,20);
 
 문제 3) 
-
+asdas
 문제 4)
 문제 5)
 
