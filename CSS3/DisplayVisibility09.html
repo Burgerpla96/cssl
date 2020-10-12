@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DisplayVisibility09.html</title>
+    <style>
+        fieldset{
+            width: 300px;
+        }
+        fieldset div{   
+            width: 50px;
+            height: 50px;
+        }
+        .inline div{
+            display:inline
+        }
+        .inline_block div{
+            display: inline-block;
+        }
+        /* inline을 block으로 */
+        /*
+        .block span{
+            display: block;
+        }
+        */
+
+    </style>
+</head>
+
+<body>
+    <h2>display 및 visibility속성</h2>
+    <div>
+        <h3>visibility</h3>
+        <fieldset class="visible">
+            <legend>visibility:hidden일때 영역은 그대로 존재</legend>
+            <div style="background-color: red;">left</div>
+            <div style="background-color: green; visibility: hidden;">center</div>
+            <!--사라지나 영역은 그대로 있다.-->
+            <div style="background-color: blue;">right</div>
+        </fieldset>
+
+        <h3>display</h3>
+        <fieldset class="visible">
+            <legend>display:none일때 영역도 사라짐</legend>
+            <div style="background-color: red;">left</div>
+            <div style="background-color: green; display: none;">center</div>
+            <!--display: none; 시 영역도 사라진다.-->
+            <div style="background-color: blue;">right</div>
+        </fieldset>
+
+        <h3>HTML5의 hidden속성</h3>
+        <fieldset class="visible">
+            <legend>hidden 속성으로 diplay:none효과</legend>
+            <div style="background-color: red;">left</div>
+            <div style="background-color: green;" hidden>center</div>
+            <div style="background-color: blue;">right</div>
+        </fieldset>    ​
+
+        <h3>block->inline</h3>
+        <fieldset class="inline">
+            <legend>가로배치로 변경</legend>
+            <div style="background-color: red;">left</div>
+            <div style="background-color: green;">center</div>
+            <div style="background-color: blue;">right</div>
+        </fieldset>
+
+        <h3>block->inline-block</h3>
+        <fieldset class="inline_block">
+            <legend>가로배치로 변경</legend>
+            <div style="background-color: red;">left</div>
+            <div style="background-color: green;">center</div>
+            <div style="background-color: blue;">right</div>
+        </fieldset>
+
+        <h3>inline->block</h3>
+        <fieldset class="block">
+            <legend>세로배치로 변경</legend>
+            <span style="background-color: red;">left</span>
+            <span style="background-color: green;">center</span>
+            <span style="background-color: blue;">right</span>
+        </fieldset>
+
+        <script>
+            var toggle = true;
+            var spans = document.getElementsByTagName('span');
+            console.log('%O',spans);
+            HTMLCollection.prototype.forEach = Array.prototype.forEach;
+
+            function toBlock(obj){
+                console.log('%O',obj);
+                var display;
+                if(toggle) {
+                    display = 'block';
+                    obj.innerHTML = 'to inline';
+                }
+                else {
+                    display = 'inline';
+                    obj.innerHTML = 'to block';
+                }
+                spans.forEach(function(span){
+                    span.style.display = display;
+                    //background-color는 backgroundColor로 접근
+                });
+                toggle = !toggle;
+                
+            }
+        </script>
+        <button onclick="toBlock(this)">first button</button>
+        <!--this는 button자체를 의미한다. HTMLButtonElement-->
+    </div>
+</body>
+
+</html>

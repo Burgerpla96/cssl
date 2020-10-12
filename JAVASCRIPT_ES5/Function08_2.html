@@ -23,6 +23,7 @@
 
        //callByReference -참조에 의한 호출, 값이 아닌 객체의 주소 전달
        var arr = [100,1];
+       var arr2 = [1,100];
        var callByRef = function(arr){
            var temp = arr[0];
            arr[0] = arr[1];
@@ -33,6 +34,7 @@
        callByRef(arr);
        console.log('callByRef함수 밖: arr[0]=%s,arr[1]=%s',arr[0],arr[1]);
 
+      
        //지역변수와 전역변수 충돌시 지역변수가 우선
        var mVar = 100;//
        function conflict(mVar){//매개변수는 지역변수

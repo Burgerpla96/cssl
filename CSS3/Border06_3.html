@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Border06_3.html</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            border: 10px green solid;
+            padding: 10px;
+        }
+        div:nth-child(2){
+            background-color:  red;
+            /* border와 padding도 영역에 포함 시켜야 한다. */
+            border: none;
+            padding: 0;
+        }
+        div:nth-child(3){
+            background-color: aqua;
+            box-sizing: border-box;
+            /* box-sizing: border-box;으로 레이아웃 설계시 사용 */
+        }
+        div:nth-child(4){
+            background-color: blue;
+            box-sizing: content-box;
+            /* border: 10px green solid;와 같다. */
+        }
+    </style>
+</head>
+<body>
+    <h2>box-sizing 속성</h2>
+    <div>가로 세로 200px</div>
+    <div>가로 세로 200px</div>
+    <div>가로 세로 200px</div>
+</body>
+</html>
