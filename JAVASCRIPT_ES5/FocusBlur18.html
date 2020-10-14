@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusBlur18.html</title>
+    <script>
+        function fnUser(num,obj){
+            switch(num){
+                case 1:
+                    obj.value = '';
+                    obj.style.color ='black'; 
+                    break;
+                default:
+                    obj.value = '아이디';
+                    obj.style.color ='lightgray'; 
+            }
+        }
+
+        function fnPass(num){
+            var count = 0;
+            var mouseHoverCount = 0;
+            console.log(document.getElementById('txt').type)
+            if(num == 1){//focus가 올라갈 때
+                if(mouseHoverCount==0){
+                    document.getElementById('txt').value = '';
+                    document.getElementById('txt').style.color ='black'; 
+                }
+                else{
+                    document.getElementById('txt').value = star;
+                }
+                
+            }
+            document.getElementById('txt').addEventListener('keypress',function(){
+                mouseHoverCount++;
+                count = parseInt(document.getElementById('txt').value.length) +1; 
+                console.log(count);
+                var star ='';
+                for(var i=1; i<count; i++) {
+                    star += '*';
+                }
+                document.getElementById('txt').value = star;
+            });
+
+
+
+            document.getElementById('txt').addEventListener('blur',function(){
+                if(count == 0){
+                    document.getElementById('txt').value = '비밀번호';
+                    document.getElementById('txt').style.color ='lightgray'; 
+                }
+                
+            });
+        }
+
+        //선생님 방식
+        // function fnPass(num){
+        //     if(num ==1){
+        //         document.getElementById('txt').style.display = 'none';
+        //         document.getElementById('pwd').style.display ='';//보이기
+        //         document.getElementById('pwd').focus();
+        //     }
+        //     else{
+        //         if(document.getElementById('pwd').value.length ==0){
+        //             document.getElementById('pwd').style.display = 'none';
+        //             document.getElementById('txt').style.display = '';
+        //         }
+        //     }
+        // }
+
+    </script>
+</head>
+
+<body>
+    <fieldset>
+        <legend>focus 및 blur이벤트</legend>
+        <input type="text" onfocus="console.log('focus이벤트 발생-포커스를 얻을때');"
+            onblur="console.log('blur이벤트 발생-포커스를 잃을때');" />
+    </fieldset>
+
+    <fieldset>
+        <legend>focus 및 blur이벤트 예제(HTML5의 속성 이용-IE에서만 적용됨)</legend>
+        아이디 <input type="text" placeholder="아이디" />
+        비밀번호 <input type="password" placeholder="비밀번호" />
+        <p style="text-st"></p>
+        
+    </fieldset>
+
+    <fieldset>
+        <legend>focus 및 blur이벤트 예제(자바스크립트로 구현)</legend>
+        아이디 <input type="text" value="아이디" style="color:lightgray" onfocus="fnUser(1,this)" onblur="fnUser(2,this)" />
+        비밀번호 <input type="text" value="비밀번호" id="txt" style="color:lightgray" onfocus="fnPass(1)" />
+        <input type="password" onblur="fnPass(2)" id="pwd" style="display:none" />
+    </fieldset>
+
+
+</body>
+
+</html>

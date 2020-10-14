@@ -11,19 +11,15 @@
             span = document.querySelector('span');
             button = document.querySelectorAll('button');
             console.log('%O',span);
-            console.log(button[0].style.innerHTML.fontSize);
 
         };
         function setFont(){
            span.style.color = 'red';
         };
         function fnArticle(){
-            // console.log(p.style.fontSize);
-            var currSize = parseInt(button.style.innerHTML.fontSize);
             switch(str){
                 case '+':
-                    currSize +=5;
-                    button.style.innerHTML.fontSize = currSize+'px'; 
+                    button[0].style.innerHTML = '+'; //여기부터
                     break;
                 case '-': 
                     if(currSize > 10){
