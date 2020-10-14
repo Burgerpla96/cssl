@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>t201013.html</title>
+</head>
+<body>
+    <script>
+        var isPure = function (str) {
+            var count = 0;
+            for (var i = 0; i < str.length; i++) {
+                if (!(isNaN(parseInt(str[i])))) { //숫자일때 참
+                   return false;
+                }
+            }
+            return true;
+        };
+        //확인
+        document.write(isPure('가2131가<br/>') + '<br/>');
+        document.write(isPure('123') + '<br/>');
+        document.write(isPure('가가가') + '<br/>');
+    </script>
+</body>
+</html>

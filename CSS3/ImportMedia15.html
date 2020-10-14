@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImportMedia15.html</title>
+
+    <!-- <link href="../Style/import.css" rel="stylesheet"/> -->
+    <style>
+        /* import 규칙을 이용한 외부 CSS파일 연결 (link tag대신)
+        반드시 style tag 안에
+        style tag 최상단에 위치( 안 그러면 적용이 안된다.) */
+        @import url(../Style/import.css);
+        .content{
+            color: mediumspringgreen;
+            background-color: sandybrown;
+        }
+
+        /* media 규칙은 위치에 상관없다. */
+        /* 화면에 보이는 CSS규칙 */
+        @media screen{
+            .content{
+                color: white;
+            }
+        }
+        /* 프린트시에 적용되는 CSS */
+        @media print{
+            .content{
+                color: black;
+                background-color: white;
+            }
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div class="content">
+        <p>
+            비리를 저질러 공직에서 추방당한 국세청과
+            관세청 공무원이 5년간 76명에 달하는 것으로 나타났다.
+        </p>
+    </div>
+</body>
+
+</html>

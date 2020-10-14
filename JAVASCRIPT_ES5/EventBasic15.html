@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventBasic15.html</title>
+    <script>
+        /*
+        모든 엘리먼트(태그,요소)에는 사용자가 발생시킨 이벤트가 있다.
+
+        리스너: onclick등 이벤트 발생을 인지하는 객체(onXXXX계열)
+        리스너는 태그 안에서 속성으로 기술가능
+
+        이벤트 핸들러: 이벤트가 발생하면 이벤트를 처리하는 애, 보통 함수
+
+        [이벤트 처리방법]
+        1) 해당 태그안에서 직접 on계열의 리스너 부착
+            예) <a href='' onclick=''>
+            디자인 코드와 백엔드 코드는 분리하는게 원칙이여서 이렇게는 잘 안 쓴다.
+        2) 해당 태그 객체를 얻어 와서 해당 태그 객체의 속성에 익명함수를 할당해서 처리
+            예) document객체의 getElemXXXByXXX() 함수로 얻어와서
+                얻어온 객체.on이벤트명 = function(){}
+                혹은 얻어온 객체.addEventListener('on을 뺀 이벤트명',function(){})
+
+            
+        [주요 이벤트]
+        load이벤트: 페이지가 웹브라우저에 처음 로딩할때 발생하는 이벤트
+        -리스너: onload
+        -body tag안에서만!! 기술 가능
+            예) <body onload= '자바 스크립트 코드'>
+
+        unload: 페이지가 닫거나, 다른 페이지로 이동할 때 발생하는 이벤트
+            브라우저마다 될수도 안 될수도 있어 사용하지 않는게 좋다.
+        -리스너:onunload
+        -body tag안에서만!! 기술 가능
+
+        submit이벤트: type='submit' 혹은 type='image'인 경우
+                클릭시 발생하는 이벤트 즉 어떤값을 action에 지정한
+                페이지로 전송시(submit)시 사용
+        -form 태그 안에서 사용
+
+        click이벤트:
+
+        
+        
+
+
+
+
+
+
+        [event 취소]
+        리스너에 false를 리턴하면 해당 이벤트가 취소된다.
+
+        예) 유명함수 <태그명 on이벤트명='return false'>
+        익명함수 태그객체.on이벤트명 = function(){return false;}
+
+
+        
+        
+
+        */
+
+        //방법2] 객체의 on계열 속성 사용해 load이벤트(window객체) 처리
+        /*
+        window.onload = function(e){
+            console.log('load이벤트 발생:window객체속성으로 load이벤트 처리');
+            console.log('%O',e);
+        }
+        */
+
+        //방법3] 객체의 addEventListener('on을 뺀 이벤트명',function(){})함수로 구현
+        window.addEventListener('load',function(e){
+            console.log('load이벤트 발생:\n addEventListener()함수로 load이벤트 처리');
+            console.log('%O',e);
+
+            //submit 이벤트
+            //방법2] form 객체 얻어 onsubmit속성 이용
+            //document.forms[0].onsubmit = fnSubmit;
+            //함수명만 넣어야 한다. ()넣을시 호출이 된다.
+
+            //submit 이벤트 
+            //방법3] 객체의 addEventListener이용
+            //document.forms[0].addEventListener('submit',fnSubmit);
+            //이벤트 취소처리가 안된다.
+            var form = document.forms[0];
+            form.addEventListener('submit',function(e){
+                if(form.txt.value == ''){
+                    alert('값을 입력하세요...');
+                    form.txt.focus();
+                    // return false; //이벤트 취소가 안된다.
+                    e.preventDefault();//이벤트 취소 처리
+                }
+            });
+
+            //reset이벤트
+            form.onreset = function(e){
+                console.log(e); //Event 객체 reset이벤트
+                console.log('reset이벤트 발생')
+            };
+
+
+            //click이벤트 처리
+            var h2 = document.getElementById('h2');
+            //방법2] 
+            /*
+            h2.onclick = function(){
+                alert('h2영역에 click이벤트 발생했어요.');
+            };
+            */
+            //방법3]
+            h2.addEventListener('click',function(){
+                alert('h2영역에 click이벤트 발생했어요!!!');
+            });
+
+            //div 객체 얻기
+            var div = document.querySelector('div');
+            div.onclick = function(){
+                alert('div에 click이벤트 발생');
+            }
+
+            //a tag얻기
+            var a = document.getElementsByTagName('a')[3];
+            a.addEventListener('click',function(){
+                alert(a.innerHTML);
+            });
+
+
+        });
+
+        
+        //submit이벤트에 걸리는 함수 만들기
+        //방법1] form tag에 onsubmit 속성 추가
+        function fnSubmit(){
+            var text = document.forms[0].txt;
+            // input타입 txt얻어오기
+            if(text.value ==''){
+                alert('입력하세요.');
+                text.focus();
+                return false;
+            }
+        };
+        
+        
+        
+    </script>
+</head>
+<!--방법1]태그안에 onclick속성 추가로 이벤트 처리, 즉 태그에 onclick리스너 부착-->
+<!-- <body onload="alert('load이벤트 발생'); console.log('load이벤트 발생');"> -->
+<body>
+    <!--
+    <h2 id="h2" onclick="alert('h2영역에 click이벤트 발생');">이벤트 기본</h2>
+    -->
+    <h2 id="h2">이벤트 기본</h2>
+    <a href="Array03_1.html">다른 페이지로 이동</a>
+    <fieldset>
+        <legend>submit 및 reset이벤트</legend>
+
+        <!--방법1]태그에 onsubmit리스너 부착-->
+        <!-- <form action="http://www.naver.com" onsubmit="return fnSubmit();" > -->
+        <form action="http://www.naver.com">
+            <input type="text" name="txt" />
+            <input type="submit" value="전송" />
+            <input type="image" src="" alt="image버튼" />
+            <input type="reset" value="취소" />
+        </form>
+    </fieldset>
+
+    <script>
+
+        function fnClick(obj){
+            console.log(obj);
+            console.log('%O',obj);
+
+            if(obj.href != undefined){// this가 a tag라면
+                console.log(obj.innerHTML);
+            }
+        }
+        // onclick으로 접근한 this는 태그 자체를 의미
+        // javascript:alert 으로 호출한 this는 window객체
+        // 1) on이벤트명 = '자스코드 안의 this';
+        // 이때는 자기자신 태그를 의미
+        // 2) javascript:함수(this) 이때 this는 window
+        
+
+
+    </script>
+
+    <fieldset>
+        <legend>click이벤트</legend>
+        <!--태그의 onclick 속성으로 이벤트 처리-->
+        <!-- <div style="border:1px red solid" onclick="alert('div에 click이벤트 발생')">DIV클릭 이벤트</div> -->
+        <div style="border:1px red solid">DIV클릭 이벤트</div>
+        <a href="#" onclick="alert('a태그에 click이벤트 발생1'); fnClick(this);" style="border:1px blue solid">A클릭 이벤트(#)</a>
+        <a href="javascript:alert('a태그에 click이벤트 발생2'); fnClick(this);" style="border:1px red solid">A클릭
+            이벤트(javascript:함수())</a>
+        <a href="#">순수 a태그만</a>
+    </fieldset>
+
+    <script>
+        /*
+        선택된 인덱스 얻기]
+        -select객체.selectedIndex
+        -인덱스는 0부터 시작
+        
+        select하위태그인 option(목록)의 개수 얻기]
+        -select객체.options배열로 얻는다
+        select객체.options.length
+        
+        선택한 값 얻기]즉 option태그의 value속성에 지정한 값
+        방법1]select객체.value(단일 선택)
+        방법2]for문을 돌면서 selected속성 이용(다중선택)
+        
+        option태그 사이의 텍스트 얻기]
+        options[인덱스].text로 혹은
+        select객체[select객체.selectedIndex].text
+        혹은 options[인덱스].innerHTML하기
+        */
+        function fnSelect(obj){ //obj는 select tag
+            console.log(obj.options);
+            //HTMLOptionsCollection 객체
+            //배열처럼 사용가능
+            console.log('선택된 인덱스:',obj.selectedIndex);
+            //총 아이템 수 
+            console.log('총 아이템 수:',obj.options.length);
+            console.log('총 아이템 수:',obj.length);
+            //선택한 값 얻기
+            //방법1)
+            console.log('선택한 값:',obj.value);
+            //방법2)
+            console.log('선택한 값:',obj.options[obj.selectedIndex].value);
+            //방법3) 다중선택모드
+            console.log('[다중선택 모드: 선택한 값들 출력]')
+            for(var i=0; i<obj.length; i++){
+                if(obj.options[i].selected){
+                    console.log(obj.options[i].value)
+                }
+            }
+            //text얻기
+            console.log(obj.options[obj.selectedIndex].text);
+            console.log(obj.options[obj.selectedIndex].innerHTML);
+        }
+
+
+        function selectGrade(){
+            var select = document.getElementsByTagName('select')[0];
+            // if(select.selectedIndex == 0){//선택하지 않음
+            if(select.value == ''){
+                alert('학력을 선택하세요.');
+                select.focus();
+            }
+        }
+
+
+        //input누를때 함수
+        function fnChoice(obj){
+            console.log(obj.type);//type중 radio혹은 checkbox가 나온다.
+            if(obj.type == 'radio'){
+                console.log(obj.value,' 선택'); //radio는 해제가 없다.
+            }   
+            else{
+                if(obj.checked){
+                    console.log(obj.value,' 선택');
+                }
+                else{
+                    console.log(obj.value,' 해제');
+                }
+            }
+        }
+    </script>
+
+    <h2 onclick="selectGrade();">선택여부 알아내기</h2>
+    <fieldset>
+        <legend>change이벤트</legend>
+        <select multiple size='3' onchange="console.log('change이벤트 발생');fnSelect(this)">
+        <!-- <select onchange="console.log('change이벤트 발생');fnSelect(this)"> -->
+            <option value="">학력 선택</option>
+            <option value="초딩">초등학교</option>
+            <option value="중딩">중학교</option>
+            <option value="고딩">고등학교</option>
+            <option value="대딩">대학교</option>
+        </select>
+
+        <input type="radio" name="gender" value="남자" onclick="fnChoice(this)" />남자
+        <input type="radio" name="gender" value="여자" onclick="fnChoice(this)" />여자
+        <input type="checkbox" name="inter" value="정치" onclick="fnChoice(this)" />정치
+        <input type="checkbox" name="inter" value="경제" onclick="fnChoice(this)" />경제
+        <input type="checkbox" name="inter" value="스포츠" onclick="fnChoice(this)" />스포츠
+
+    </fieldset>
+</body>
+
+</html>

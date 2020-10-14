@@ -15,6 +15,68 @@
         //%uC548%uB155%20%uAC00%21%20HELLO%201234567890
         //unescape() UTF-8형식으로 인코딩한 것을 디코딩
         console.log(unescape('%uC548%uB155%20%uAC00%21%20HELLO%201234567890'));
+        
+
+
+
+
+
+
+        //document.write('<script>alert("메세지 대화상자");<\/script>');
+
+        // eval('string'): 매개변수에 있는 값을 자바스크립트로 해석
+        // json형식의 데이터{name:'홍길동',age:10} 처리하거나
+        // 문자열을 특정 DOM객체로 처리시, 문자열을 자스코드로 실행한다.
+        //eval('alert("메세지 대화상자");');
+        var str = '{"name":"홍길동","age":10}';//문자열
+        console.log('%O',str);
+        //console.log(str.name); 정의 되어있지 않다.
+        //JSON.parse('JSON형태의 문자열'): string을 JSON객체로 변환해서 반환
+        //key값은 " "로 감싸기!!!!!!!        (전체 string은 ' '로 감싸기 -편리하게) 
+        // 아니면 오류남
+        console.log('[JSON.parse()함수]')
+        var json = JSON.parse(str);
+        console.log(json.name);
+
+
+
+        var obj ={name:'홍길동',age:10};
+        var rtobj = eval("(function(){return this.obj;})()");
+        console.log('[eval()함수]');
+        console.log('%O',rtobj);
+        console.log(rtobj.name);
+        
+        var obj2 = eval('({"name":"홍길동","age":10})');
+        console.log(obj2.name);
+        //이렇게 ()로 감싸면 가능
+        //eval()은 자스 그대로 사용하기에 사용하지 않는것이 좋다.
+        
+
+
+        //isNaN() NaN인지 아닌지 판단하는 함수
+        console.log('[isNaN()함수]');
+        isNaN('100')?console.log('숫자다.'):console.log('숫자가 아니다.');
+        isNaN(100)?console.log('숫자다.'):console.log('숫자가 아니다.');
+
+        //parseInt() 수로 변환 문자로 시작하면 NaN 반환
+        console.log('[parseInt()함수]');
+        console.log(typeof parseInt('100'));
+
+        /*
+        [encodeURI() / decodeURI()]
+        알파벳 숫자외, 대부분 문자를 인코딩
+        [escape()]
+        
+        [encodeURIComponent()]
+
+        */
+
+        var query = 'name=가길동&key=you&age=30';
+        console.log('encodeURI:',encodeURI(query));
+        console.log('escape:',escape(query));
+        console.log('encodeURIComponent:',encodeURIComponent(query));
+
+        
     </script>
 </head>
 <body>
