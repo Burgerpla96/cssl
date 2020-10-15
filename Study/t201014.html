@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    
+</head>
+<body>
+    <!--인터프리터 방식 !!!!! -->
+
+    
+    <form name="frmobj">
+        <span id="span">s </span>
+        <p id="d" >1</p>
+        <p >2</p>
+        <input type="button" name="noop" value="button" id="ac"/>
+    </form>
+
+    <script>
+        // var form = document.getElementById('form');
+        // var form = document.querySelector('form');
+        var button = document.querySelector('input');
+        var form = document.forms[0];//HTMLFormElement
+        var p = document.querySelector('form:first-child');
+        var span = document.querySelector('span');
+        console.log(frmobj.d);
+        // console.log('%O',span);
+        // console.log('%O',form);
+        // console.log('%O',p);
+        // console.log(frmobj);
+        
+    </script>
+</body>
+</html>
