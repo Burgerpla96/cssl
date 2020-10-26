@@ -623,7 +623,7 @@ required="required"속성-입력값이 있는 지를 검증함.
 
 		
 		
-
+	
 		processOpened() is called once a connection is opened. An example use of this will be starting a thread that sends updates to client in regular intervals. 
 		Similarly, processClosed() is called when the connection closes so that you can perform any clean ups.
 		the major processing is done in processPacket(). 

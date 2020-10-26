@@ -20,16 +20,29 @@ form객체.submit()사용으로 submit이 가능하다. 다만 submit이벤트�
 // });
 
 
+//문제  -- 
+window.onload = function(){
+    var input = document.getElementsByName('id')[0];
+    input.addEventListener('keyup',function(){
+        
+        document.getElementById('idError').innerHTML = input.value;
+        if(input.value == ''){
+            document.getElementById('idError').innerHTML = '아이디를 입력하세요.';
+        }
+    });
+};
+
+// input.addEventListener('keypress',function(){
+//     document.getElementById('idError').innerHTML = '';
+// });
+
+
 function isValidate(obj){
+    
     if(obj.id.value == ''){
         // alert('아이디를 입력하세요');
         //문제) alert()대신 빨간 문구 입력하기.
         //input상자의 상위에 div하고 span넣어서 하기...
-
-        obj.id.addEventListener('keypress',function(){
-            document.getElementById('idError').innerHTML = '';
-        });
-        
         document.getElementById('idError').innerHTML = '아이디를 입력하세요.';
         obj.id.focus();
         return false;

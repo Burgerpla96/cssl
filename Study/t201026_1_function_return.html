@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>t201026_1_function_return.html</title>
+    <script>
+        function return_test(){
+            var num = 123;
+        }
+
+        //일반함수는 리턴 값을 지정하지 않으면 undefined 값이 리턴된다.
+        //생성자 함수는 리턴값을 지정하지 않으면 생성된 객체 반환
+
+        function return_url(){
+            location.href = "t201006.html";
+        }
+        document.write(return_test()+"<br/>");
+        //console.log(return_test()+"<br/>");
+
+        document.write(return_url()+"<br/>");
+        //console.log(return_url()+"<br/>");
+        
+        console.log("%O",return_url);
+        console.log(javascript.return_url());
+    </script>
+</head>
+<body>
+    
+    123<br/>
+    <script>
+        document.write(javascript.return_url());
+    </script>
+    <a href="#" onclick="return_url()">아직도 몰라?!</a>
+    <a href='javascript:return_url()'>몰라 아직</a>
+</body>
+</html>

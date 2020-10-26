@@ -119,12 +119,14 @@
         function fnChangeImage(num){
             var img = document.getElementById('image');
             img.src = '../Images/'+num+'.jpg';
+            
         }////////////fnChangeImage()
 
 
 
 
-        var fnCopy = function(){
+        var fnCopy = function() {
+
             var src = document.getElementById('src');
             var srcTxt1 = document.getElementById('srcTxt1');
             var srcTxt2 = document.getElementById('srcTxt2');
@@ -137,6 +139,9 @@
             destTxt2_1.value = srcTxt2.value;
 
         }//////////fnCopy()
+
+        //document.write(fnCopy());
+        document.write( 'javascript:fnChangeImage(1)');
 
     </script>
 </head>
