@@ -187,14 +187,14 @@
     <script>
 
         function fnClick(obj){
-            console.log(obj);
+            console.log('매개변수로 받은obj: ',obj);// tag에서 넘겨준 this는  tag객체(DOM 객체)
             console.log('%O',obj);
-
+            console.log('this: ',this);//window 객체
             if(obj.href != undefined){// this가 a tag라면
                 console.log(obj.innerHTML);
             }
         }
-        // onclick으로 접근한 this는 태그 자체를 의미
+        // onclick으로 접근한 this는 태그 자체를 의미(a tag DOM 객체)
         // javascript:alert 으로 호출한 this는 window객체
         // 1) on이벤트명 = '자스코드 안의 this';
         // 이때는 자기자신 태그를 의미
@@ -210,8 +210,7 @@
         <!-- <div style="border:1px red solid" onclick="alert('div에 click이벤트 발생')">DIV클릭 이벤트</div> -->
         <div style="border:1px red solid">DIV클릭 이벤트</div>
         <a href="#" onclick="alert('a태그에 click이벤트 발생1'); fnClick(this);" style="border:1px blue solid">A클릭 이벤트(#)</a>
-        <a href="javascript:alert('a태그에 click이벤트 발생2'); fnClick(this);" style="border:1px red solid">A클릭
-            이벤트(javascript:함수())</a>
+        <a href="javascript:alert('a태그에 click이벤트 발생2'); fnClick(this);" style="border:1px red solid">A클릭 이벤트(javascript:함수())</a>
         <a href="#">순수 a태그만</a>
     </fieldset>
 
@@ -272,7 +271,7 @@
 
         //input누를때 함수
         function fnChoice(obj){
-            console.log(obj.type);//type중 radio혹은 checkbox가 나온다.
+            console.log(obj.type);//type중 radio 혹은 checkbox가 나온다.
             if(obj.type == 'radio'){
                 console.log(obj.value,' 선택'); //radio는 해제가 없다.
             }   
@@ -290,8 +289,8 @@
     <h2 onclick="selectGrade();">선택여부 알아내기</h2>
     <fieldset>
         <legend>change이벤트</legend>
-        <select multiple size='3' onchange="console.log('change이벤트 발생');fnSelect(this)">
-        <!-- <select onchange="console.log('change이벤트 발생');fnSelect(this)"> -->
+        <select multiple size='3' onchange="console.log('change 이벤트 발생');fnSelect(this)">
+        <!-- <select onchange="console.log('change 이벤트 발생');fnSelect(this)"> -->
             <option value="">학력 선택</option>
             <option value="초딩">초등학교</option>
             <option value="중딩">중학교</option>
